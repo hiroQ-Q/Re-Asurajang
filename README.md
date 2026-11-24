@@ -1,16 +1,13 @@
 <h1 align="center">Re:Asurajang</h1>
 
 <p align="center">
-  <strong>あの熱狂を、もう一度。</strong><br>
   <sub>Unofficial ASURAJANG Revival Project</sub>
 </p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Project-In%20Development-blue">
-  <img src="https://img.shields.io/badge/Game%20Launch-Completed-success">
-  <img src="https://img.shields.io/badge/Lobby-Connected-success">
-  <img src="https://img.shields.io/badge/Tutorial-Completed-success">
-  <img src="https://img.shields.io/badge/Matchmaking-Pending-lightgrey">
+  <img src="https://img.shields.io/badge/Initial%20Setup-Completed-success">
+  <img src="https://img.shields.io/badge/Online%20Features-In%20Progress-orange">
 </p>
 
 ---
@@ -19,54 +16,46 @@
 
 **Re:Asurajang** is an unofficial project dedicated to reviving the discontinued online game **ASURAJANG**.
 
-Our goal is to bring the game back to life by rebuilding the necessary infrastructure and restoring its online functionality.
+The project aims to restore the game's functionality by rebuilding and reconnecting the systems required to access its content and online features.
 
-The project is currently under active development. Initial progress has been made in launching the game, connecting to the lobby, and completing the tutorial.
-
-There is still a long way to go, but development continues.
+Development is ongoing. The current build can launch without Steam, connect to a local server, access the lobby, and complete the tutorial flow.
 
 ## Development Status
 
-| Component | Status |
-|:---|:---:|
-| Game Launch | ✅ Completed |
-| Lobby Connection | ✅ Completed |
-| Tutorial | ✅ Completed |
-| Matchmaking | ⏳ Pending |
-| Multiplayer Functionality | ⏳ Pending |
-| Additional Game Systems | ⏳ Pending |
+### Confirmed
+
+The following functions have been tested and confirmed:
+
+- [x] Launch the game without going through Steam
+- [x] Connect to a local server
+- [x] Select the game language
+- [x] Select a tutorial character
+- [x] Play the tutorial
+- [x] Play a tutorial match (bot battle)
+- [x] Access the lobby
+- [x] Skip the tutorial
+
+### Planned
+
+The following features are planned for future development:
+
+- [ ] Battle Pass
+- [ ] Missions
+- [ ] Shop
+- [ ] Account statistics
+- [ ] Matchmaking
+- [ ] Matches
+- [ ] Game mode support
+- [ ] Multiplayer
 
 ## Roadmap
 
-### Phase 1 — Initial Setup
-- [x] Launch the game
-- [x] Establish lobby connection
-- [x] Complete tutorial
-
-### Phase 2 — Online Infrastructure
-- [ ] Investigate matchmaking
-- [ ] Implement matchmaking functionality
-- [ ] Establish player sessions
-- [ ] Verify multiplayer connectivity
-
-### Phase 3 — Gameplay Restoration
-- [ ] Restore online gameplay functionality
-- [ ] Verify game synchronization
-- [ ] Test game modes
-- [ ] Investigate additional game systems
-
-### Phase 4 — Stability & Testing
-- [ ] Improve connection stability
-- [ ] Resolve discovered issues
-- [ ] Conduct compatibility testing
-- [ ] Prepare a testing environment
-
-*Roadmap items are subject to change as development progresses.*
+See [docs/ROADMAP.md](docs/ROADMAP.md) for the feature checklist.
 
 ## Project Goals
 
 - **Preservation** — Preserve the legacy of ASURAJANG.
-- **Reconstruction** — Rebuild the infrastructure required for online functionality.
+- **Reconstruction** — Rebuild the infrastructure required to restore game functionality.
 - **Compatibility** — Restore compatibility between game components.
 - **Community** — Build a foundation for future community involvement.
 
@@ -82,14 +71,4 @@ Any distribution or public access will be subject to applicable rights and permi
 
 ## Development
 
-Development is ongoing.
-
-Further updates, technical information, and progress reports will be published as the project evolves.
-
----
-
-<p align="center">
-  <strong>Re:Asurajang</strong><br>
-  Bringing the game back, one step at a time.<br><br>
-  <sub>あの場所を、もう一度。</sub>
-</p>
+Development is ongoing. Further updates, technical information, and progress reports will be published as the project evolves.
