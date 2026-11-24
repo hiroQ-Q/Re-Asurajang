@@ -27,9 +27,34 @@ ul{padding:0;margin:0;list-style:none;display:grid;gap:12px}li{display:flex;gap:
 .disclaimer{border-top:1px solid var(--line);padding:24px 0;color:#737b8b;font-size:10px}footer{border-top:1px solid var(--line);padding:25px 0;color:#777f90;font-size:10px}.foot{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
 @media(max-width:760px){.wrap{width:calc(100% - 32px)}header{height:66px}nav{gap:14px;font-size:10px}nav a:nth-child(2){display:none}.hero{min-height:600px}.hero:before{right:-50%;opacity:.7}.hero:after{right:-30%;opacity:.6}.hero-content{padding:85px 0}.hero-meta{gap:12px;flex-wrap:wrap}.about-grid,.columns{grid-template-columns:1fr;gap:25px}.abstract-card{min-height:220px}.stats{margin-top:30px}.roadmap{grid-template-columns:1fr 1fr}section{padding:70px 0}}
 @media(max-width:400px){h1{font-size:48px}.btn{padding:12px 14px}.roadmap{gap:7px}.phase{padding:13px}}
+
+/* Interactive polish */
+html{scroll-padding-top:86px}
+body{background-image:radial-gradient(600px circle at var(--pointer-x,50%) var(--pointer-y,20%),#a995ff0b,transparent 55%)}
+#scroll-progress{position:fixed;z-index:20;left:0;top:0;height:3px;width:0;background:linear-gradient(90deg,var(--lime),var(--violet));box-shadow:0 0 14px #c9f36a88;pointer-events:none}
+header{position:sticky;top:0;z-index:15;background:#08090de8;backdrop-filter:blur(16px)}
+.hero:before,.hero:after{animation:orbit 26s linear infinite}
+.hero:after{animation-direction:reverse;animation-duration:34s}
+@keyframes orbit{to{rotate:405deg}}
+.hero-content>*{animation:hero-in .8s both;animation-timing-function:cubic-bezier(.2,.7,.2,1)}
+.hero-content .eyebrow{animation-delay:.08s}.hero-content h1{animation-delay:.18s}.hero-content .intro{animation-delay:.3s}.hero-content .actions{animation-delay:.4s}.hero-content .hero-meta{animation-delay:.52s}
+@keyframes hero-in{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.reveal.is-visible{opacity:1;transform:translateY(0)}
+.panel,.stat,.phase,.abstract-card{transition:border-color .25s ease,transform .25s ease,box-shadow .25s ease}
+.panel:hover,.stat:hover,.phase:hover{transform:translateY(-4px);border-color:#a995ff77;box-shadow:0 14px 40px #0005}
+.abstract-card:hover{border-color:#c9f36a77}
+.btn{position:relative;overflow:hidden}.btn:after{content:"";position:absolute;inset:0;transform:translateX(-120%);background:linear-gradient(100deg,transparent,#ffffff35,transparent);transition:transform .55s}
+.btn:hover:after{transform:translateX(120%)}
+nav a{position:relative}nav a:after{content:"";position:absolute;left:0;right:100%;bottom:-8px;height:1px;background:var(--lime);transition:right .2s}
+nav a:hover:after,nav a.active:after{right:0}
+.ticker{background:linear-gradient(90deg,#0b0d13,#121522,#0b0d13)}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
+
 </style>
 </head>
 <body>
+<div id="scroll-progress" aria-hidden="true"></div>
 <header class="wrap"><a class="brand" href="#">RE:<b>ASURAJANG</b></a><nav><a href="#about">ABOUT</a><a href="#status">STATUS</a><a href="#roadmap">ROADMAP</a><a href="https://github.com/hiroQ-Q/Re-Asurajang" target="_blank" rel="noopener">GITHUB ↗</a></nav></header>
 <main>
 <section class="hero"><div class="wrap hero-content">
@@ -60,4 +85,50 @@ ul{padding:0;margin:0;list-style:none;display:grid;gap:12px}li{display:flex;gap:
 </main>
 <div class="wrap disclaimer">DISCLAIMER — Re:Asurajangは非公式の独立プロジェクトであり、ASURAJANGの開発元・運営元・権利者とは一切関係ありません。商標、著作権、ゲーム素材その他の知的財産権は各権利者に帰属します。本プロジェクトは原作の権利を主張するものではありません。コンテンツの配布・公開は、適用される権利および許諾に従います。</div>
 <footer><div class="wrap foot"><span>© Re:Asurajang Project</span><span>UNOFFICIAL ASURAJANG REVIVAL PROJECT</span></div></footer>
+
+<script>
+(() => {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const progress = document.getElementById('scroll-progress');
+  const updateProgress = () => {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    if (progress) progress.style.width = (max > 0 ? window.scrollY / max * 100 : 0) + '%';
+  };
+  window.addEventListener('scroll', updateProgress, {passive:true});
+  updateProgress();
+
+  if (!reduceMotion && 'IntersectionObserver' in window) {
+    const targets = document.querySelectorAll('section, .stat, .panel, .phase, .abstract-card, .ticker');
+    targets.forEach(el => el.classList.add('reveal'));
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {threshold:0.12, rootMargin:'0px 0px -35px 0px'});
+    targets.forEach(el => observer.observe(el));
+  }
+
+  const links = [...document.querySelectorAll('nav a[href^="#"]')];
+  const sections = links.map(link => document.querySelector(link.getAttribute('href'))).filter(Boolean);
+  if ('IntersectionObserver' in window) {
+    const navObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        links.forEach(link => link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id));
+      });
+    }, {rootMargin:'-25% 0px -65% 0px'});
+    sections.forEach(section => navObserver.observe(section));
+  }
+
+  if (!reduceMotion && window.matchMedia('(pointer:fine)').matches) {
+    window.addEventListener('pointermove', event => {
+      document.documentElement.style.setProperty('--pointer-x', event.clientX + 'px');
+      document.documentElement.style.setProperty('--pointer-y', event.clientY + 'px');
+    }, {passive:true});
+  }
+})();
+</script>
 </body></html>
