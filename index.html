@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="ja">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#080b12">
-  <meta name="description" content="Re:Asurajang — サービス終了したオンラインゲーム ASURAJANG の復活を目指す非公式プロジェクト。開発状況とロードマップを公開中。">
+  <meta name="description" content="Re:Asurajang is an independent, unofficial community project exploring ways to bring the ASURAJANG experience back.">
   <title>Re:Asurajang — Unofficial Revival Project</title>
   <style>
     :root{color-scheme:dark;--bg:#080b12;--panel:#101722;--line:#243044;--muted:#91a0b6;--text:#edf3ff;--cyan:#6ce7f2;--blue:#668dff;--green:#72e0ae}
@@ -50,6 +50,11 @@
     @media(max-width:720px){nav{gap:13px;font-size:11px}.top{height:64px}.hero{min-height:570px}.hero-inner{padding:70px 0}.stats{grid-template-columns:1fr}.grid,.about{grid-template-columns:1fr}.roadmap{grid-template-columns:repeat(2,1fr)}section{padding:70px 0}.about-mark{min-height:220px}}
     @media(max-width:420px){nav a:nth-child(2){display:none}.wrap{width:min(100% - 30px,1120px)}.roadmap{grid-template-columns:1fr 1fr}}
   
+
+    .language-switch{appearance:none;border:1px solid #6ce7f255;background:#6ce7f20b;color:var(--cyan);font:inherit;font-size:11px;font-weight:800;letter-spacing:.08em;padding:7px 11px;border-radius:3px;cursor:pointer;transition:background .2s,border-color .2s}
+    .language-switch:hover{background:#6ce7f21b;border-color:var(--cyan)}
+    [data-i18n]{transition:opacity .15s ease}
+    @media(max-width:720px){nav{gap:10px}.language-switch{padding:6px 8px}}
     /* Re:Asurajang — refined original visual direction */
     html{scroll-padding-top:88px}
     body{overflow-x:hidden;background-image:radial-gradient(700px circle at var(--mx,50%) var(--my,10%),#6ce7f20b,transparent 55%)}
@@ -94,32 +99,32 @@
   <div id="reading-progress" aria-hidden="true"></div>
   <header class="wrap top">
     <a class="brand" href="#">RE:<span>ASURAJANG</span></a>
-    <nav aria-label="メインナビゲーション"><a href="#about">ABOUT</a><a href="#status">STATUS</a><a href="#roadmap">ROADMAP</a><a href="https://github.com/hiroQ-Q/Re-Asurajang" target="_blank" rel="noopener">GITHUB ↗</a></nav>
+    <nav aria-label="Main navigation"><a href="#about">ABOUT</a><a href="#status">STATUS</a><a href="#roadmap">ROADMAP</a><a href="https://github.com/hiroQ-Q/Re-Asurajang" target="_blank" rel="noopener">GITHUB ↗</a><button class="language-switch" id="language-switch" type="button" aria-label="Switch language">日本語</button></nav>
   </header>
   <main>
     <section class="hero">
       <div class="wrap hero-inner">
         <div class="eyebrow"><i class="dot"></i> UNOFFICIAL REVIVAL PROJECT</div>
         <h1>THE GAME<br><span class="accent">LIVES ON.</span></h1>
-        <p class="lead">サービス終了したオンラインゲーム「ASURAJANG」。<br>もう一度その世界へアクセスできることを目指して、Re:Asurajang は開発を続けています。</p>
+        <p class="lead" data-i18n="heroLead">ASURAJANG was an online game that has since shut down.<br>Re:Asurajang is working to make that world accessible again.</p>
         <div class="actions">
-          <a class="btn primary" href="#status">開発状況を見る　↓</a>
-          <a class="btn" href="https://github.com/hiroQ-Q/Re-Asurajang" target="_blank" rel="noopener">GitHub リポジトリ ↗</a>
+          <a class="btn primary" href="#status" data-i18n="viewStatus">VIEW DEVELOPMENT STATUS ↓</a>
+          <a class="btn" href="https://github.com/hiroQ-Q/Re-Asurajang" target="_blank" rel="noopener">GITHUB REPOSITORY ↗</a>
         </div>
         <p class="hero-note">PRESERVATION / RECONSTRUCTION / COMMUNITY</p>
       </div>
     </section>
-    <div class="wrap stats" aria-label="プロジェクト概要">
-      <div class="stat"><strong>08</strong><span>動作確認済み項目</span></div>
-      <div class="stat"><strong>08</strong><span>今後の開発予定項目</span></div>
+    <div class="wrap stats" aria-label="Project overview">
+      <div class="stat"><strong>08</strong><span data-i18n="verified">Verified features</span></div>
+      <div class="stat"><strong>08</strong><span data-i18n="planned">Planned features</span></div>
       <div class="stat"><strong>WIP</strong><span>PROJECT STATUS · IN DEVELOPMENT</span></div>
     </div>
     <section id="about">
       <div class="wrap about">
         <div>
           <div class="section-kicker">01 / ABOUT THE PROJECT</div>
-          <h2>ASURAJANGを、<br>もう一度遊べる場所へ。</h2>
-          <p class="sub">Re:Asurajang は、ASURAJANG のゲーム体験を再び楽しめる状態にすることを目指す、非公式の独立プロジェクトです。ゲームの起動やローカルサーバーへの接続など、基礎部分から段階的に開発・検証を進めています。</p>
+          <h2 data-i18n="aboutTitle">Bringing the ASURAJANG experience back.</h2>
+          <p class="sub" data-i18n="aboutText">Re:Asurajang is an independent, unofficial project aiming to make the ASURAJANG experience playable again. Development and testing are progressing step by step, starting with launching the client and connecting to a local server.</p>
         </div>
         <div class="about-mark" aria-label="Re:Asurajang project mark"><div class="symbol">RE:</div></div>
       </div>
@@ -127,55 +132,121 @@
     <section id="status" style="background:#0b1019;border-top:1px solid #ffffff0c;border-bottom:1px solid #ffffff0c">
       <div class="wrap">
         <div class="section-kicker">02 / DEVELOPMENT STATUS</div>
-        <h2>現在の開発状況</h2>
-        <p class="sub">実際に動作確認できた項目と、今後実装を予定している項目を掲載しています。</p>
+        <h2 data-i18n="statusTitle">Development Status</h2>
+        <p class="sub" data-i18n="statusText">A clear overview of features verified to work and those planned for future development.</p>
         <div class="grid">
           <article class="panel">
-            <h3><span class="tag">CONFIRMED</span> 動作確認済み</h3>
+            <h3><span class="tag">CONFIRMED</span> <span data-i18n="confirmedTitle">Verified</span></h3>
             <ul class="checks">
-              <li><span class="check">✓</span> Steamを経由しない起動</li>
-              <li><span class="check">✓</span> ローカルサーバーへの接続</li>
-              <li><span class="check">✓</span> 言語選択</li>
-              <li><span class="check">✓</span> チュートリアルキャラクター選択</li>
+              <li><span class="check">✓</span> Launch without Steam</li>
+              <li><span class="check">✓</span> Connect to a local server</li>
+              <li><span class="check">✓</span> Language selection</li>
+              <li><span class="check">✓</span> Tutorial character selection</li>
               <li><span class="check">✓</span> チュートリアル</li>
-              <li><span class="check">✓</span> チュートリアルマッチ（BOT戦）</li>
-              <li><span class="check">✓</span> ロビーへのアクセス</li>
-              <li><span class="check">✓</span> チュートリアルスキップ</li>
+              <li><span class="check">✓</span> Tutorial match (BOT battle)</li>
+              <li><span class="check">✓</span> Access to the lobby</li>
+              <li><span class="check">✓</span> Skip the tutorial</li>
             </ul>
           </article>
           <article class="panel" id="roadmap">
-            <h3><span class="tag" style="background:#3b3020;color:#f2c66d">PLANNED</span> 今後の開発予定</h3>
+            <h3><span class="tag" style="background:#3b3020;color:#f2c66d">PLANNED</span> <span data-i18n="plannedTitle">Planned</span></h3>
             <ul class="checks">
-              <li><span class="pending">◷</span> バトルパス</li>
-              <li><span class="pending">◷</span> ミッション</li>
-              <li><span class="pending">◷</span> ショップ</li>
-              <li><span class="pending">◷</span> アカウント統計</li>
-              <li><span class="pending">◷</span> マッチメイキング</li>
-              <li><span class="pending">◷</span> マッチ</li>
-              <li><span class="pending">◷</span> モード対応</li>
-              <li><span class="pending">◷</span> マルチプレイ</li>
+              <li><span class="pending">◷</span> Battle Pass</li>
+              <li><span class="pending">◷</span> Missions</li>
+              <li><span class="pending">◷</span> Shop</li>
+              <li><span class="pending">◷</span> Account statistics</li>
+              <li><span class="pending">◷</span> Matchmaking</li>
+              <li><span class="pending">◷</span> Matches</li>
+              <li><span class="pending">◷</span> Game modes</li>
+              <li><span class="pending">◷</span> Multiplayer</li>
             </ul>
           </article>
         </div>
         <div class="roadmap">
-          <div class="road"><small>PHASE 01</small><p>起動・接続基盤</p></div>
-          <div class="road"><small>PHASE 02</small><p>ロビー・基本機能</p></div>
-          <div class="road"><small>PHASE 03</small><p>マッチ機能</p></div>
-          <div class="road"><small>PHASE 04</small><p>オンラインプレイ</p></div>
+          <div class="road"><small>PHASE 01</small><p data-i18n="phase1">Launch &amp; connectivity</p></div>
+          <div class="road"><small>PHASE 02</small><p data-i18n="phase2">Lobby &amp; core features</p></div>
+          <div class="road"><small>PHASE 03</small><p>Matches機能</p></div>
+          <div class="road"><small>PHASE 04</small><p data-i18n="phase4">Online play</p></div>
         </div>
       </div>
     </section>
     <section>
       <div class="wrap" style="text-align:center">
         <div class="section-kicker">03 / FOLLOW DEVELOPMENT</div>
-        <h2>開発の進捗をチェック</h2>
-        <p class="sub" style="margin:0 auto 28px">ソースコード、ドキュメント、ロードマップはGitHubで公開しています。</p>
+        <h2 data-i18n="followTitle">Follow the development</h2>
+        <p class="sub" style="margin:0 auto 28px" data-i18n="followText">Source code, documentation, and the roadmap are available on GitHub.</p>
         <a class="btn primary" href="https://github.com/hiroQ-Q/Re-Asurajang" target="_blank" rel="noopener">VIEW ON GITHUB　↗</a>
       </div>
     </section>
   </main>
-  <div class="wrap disclaimer">DISCLAIMER — Re:Asurajang は非公式の独立プロジェクトであり、ASURAJANG の開発元・運営元・権利者とは一切関係ありません。商標、著作権、ゲーム素材その他の知的財産権は各権利者に帰属します。本プロジェクトは原作の権利を主張するものではありません。コンテンツの配布・公開は、適用される権利および許諾に従います。</div>
+  <div class="wrap disclaimer">DISCLAIMER — Re:Asurajang is an independent, unofficial community project and is not affiliated with the developers, operators, or rights holders of ASURAJANG. All trademarks, copyrights, game assets, and other intellectual property remain the property of their respective owners. This project does not claim ownership of the original work. Any distribution or publication of content is subject to applicable rights and permissions.</div>
   <footer><div class="wrap foot"><span>© Re:Asurajang Project</span><span>UNOFFICIAL ASURAJANG REVIVAL PROJECT</span></div></footer>
+
+
+  <script>
+  (() => {
+    const translations = {
+      en: {
+        heroLead: 'ASURAJANG was an online game that has since shut down.<br>Re:Asurajang is working to make that world accessible again.',
+        viewStatus:'VIEW DEVELOPMENT STATUS ↓', verified:'Verified features', planned:'Planned features',
+        aboutTitle:'Bringing the ASURAJANG experience back.',
+        aboutText:'Re:Asurajang is an independent, unofficial project aiming to make the ASURAJANG experience playable again. Development and testing are progressing step by step, starting with launching the client and connecting to a local server.',
+        statusTitle:'Development Status', statusText:'A clear overview of features verified to work and those planned for future development.',
+        confirmedTitle:'Verified', plannedTitle:'Planned',
+        phase1:'Launch & connectivity',phase2:'Lobby & core features',phase3:'Match features',phase4:'Online play',
+        followTitle:'Follow the development',followText:'Source code, documentation, and the roadmap are available on GitHub.'
+      },
+      ja: {
+        heroLead:'サービス終了したオンラインゲーム「ASURAJANG」。<br>もう一度その世界へアクセスできることを目指して、Re:Asurajang は開発を続けています。',
+        viewStatus:'開発状況を見る ↓',verified:'動作確認済み項目',planned:'今後の開発予定項目',
+        aboutTitle:'ASURAJANGを、もう一度遊べる場所へ。',
+        aboutText:'Re:Asurajang は、ASURAJANG のゲーム体験を再び楽しめる状態にすることを目指す、非公式の独立プロジェクトです。ゲームの起動やローカルサーバーへの接続など、基礎部分から段階的に開発・検証を進めています。',
+        statusTitle:'現在の開発状況',statusText:'実際に動作確認できた項目と、今後実装を予定している項目を掲載しています。',
+        confirmedTitle:'動作確認済み',plannedTitle:'今後の開発予定',
+        phase1:'起動・接続基盤',phase2:'ロビー・基本機能',phase3:'マッチ機能',phase4:'オンラインプレイ',
+        followTitle:'開発の進捗をチェック',followText:'ソースコード、ドキュメント、ロードマップはGitHubで公開しています。'
+      }
+    };
+    const fixedItems = [
+      ['Launch without Steam','Steamを経由しない起動'],
+      ['Connect to a local server','ローカルサーバーへの接続'],
+      ['Language selection','言語選択'],
+      ['Tutorial character selection','チュートリアルキャラクター選択'],
+      ['Tutorial','チュートリアル'],
+      ['Tutorial match (BOT battle)','チュートリアルマッチ（BOT戦）'],
+      ['Access to the lobby','ロビーへのアクセス'],
+      ['Skip the tutorial','チュートリアルスキップ'],
+      ['Battle Pass','バトルパス'],['Missions','ミッション'],['Shop','ショップ'],
+      ['Account statistics','アカウント統計'],['Matchmaking','マッチメイキング'],
+      ['Matches','マッチ'],['Game modes','モード対応'],['Multiplayer','マルチプレイ']
+    ];
+    const switcher = document.getElementById('language-switch');
+    let language = 'en';
+    function applyLanguage(next) {
+      language = next;
+      document.documentElement.lang = next;
+      document.querySelector('meta[name="description"]').content = next === 'en'
+        ? 'Re:Asurajang is an independent, unofficial community project exploring ways to bring the ASURAJANG experience back.'
+        : 'Re:AsurajangはASURAJANGのゲーム体験を再び楽しめる状態にすることを目指す非公式の独立プロジェクトです。';
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const value = translations[next][el.dataset.i18n];
+        if (value) el.innerHTML = value;
+      });
+      const rows = document.querySelectorAll('.checks li');
+      rows.forEach((row, i) => {
+        const pair = fixedItems[i];
+        if (pair) row.lastChild.textContent = next === 'en' ? pair[0] : pair[1];
+      });
+      switcher.textContent = next === 'en' ? '日本語' : 'ENGLISH';
+      switcher.setAttribute('aria-label', next === 'en' ? 'Switch to Japanese' : 'Switch to English');
+      try { localStorage.setItem('re-asurajang-language', next); } catch (_) {}
+    }
+    switcher.addEventListener('click', () => applyLanguage(language === 'en' ? 'ja' : 'en'));
+    let saved = 'en';
+    try { saved = localStorage.getItem('re-asurajang-language') || 'en'; } catch (_) {}
+    applyLanguage(saved === 'ja' ? 'ja' : 'en');
+  })();
+  </script>
 
   <script>
   (() => {
