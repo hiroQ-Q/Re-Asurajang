@@ -188,9 +188,25 @@
       .hero-inner{opacity:1;transform:none}
     }
 
+
+    /* Branded page loader */
+    body.is-loading{overflow:hidden}
+    .page-loader{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;background:#080b12;opacity:1;visibility:visible;transition:opacity .55s ease,visibility .55s}
+    .page-loader.is-done{opacity:0;visibility:hidden;pointer-events:none}
+    .loader-inner{width:min(260px,70vw);text-align:center}
+    .loader-mark{font-size:36px;font-weight:950;letter-spacing:-.12em;color:#e8faff;text-shadow:0 0 26px #6ce7f255}
+    .loader-mark span{color:var(--cyan)}
+    .loader-caption{margin-top:13px;color:#91a0b6;font-size:9px;font-weight:800;letter-spacing:.24em}
+    .loader-track{height:2px;margin-top:23px;background:#243044;overflow:hidden}
+    .loader-fill{height:100%;width:38%;background:linear-gradient(90deg,var(--cyan),var(--blue));box-shadow:0 0 14px #6ce7f2;animation:loader-sweep 1.25s ease-in-out infinite}
+    @keyframes loader-sweep{0%{transform:translateX(-110%)}100%{transform:translateX(280%)}}
+    .loader-status{margin-top:10px;color:#53647b;font-size:9px;letter-spacing:.12em}
+    @media(prefers-reduced-motion:reduce){.page-loader{transition:none}.loader-fill{animation:none;width:100%}}
+
   </style>
 </head>
-<body>
+<body class="is-loading">
+  <div class="page-loader" id="page-loader" role="status" aria-live="polite" aria-label="Loading Re:Asurajang"><div class="loader-inner"><div class="loader-mark">RE:<span>ASURAJANG</span></div><div class="loader-caption">UNOFFICIAL REVIVAL PROJECT</div><div class="loader-track"><div class="loader-fill"></div></div><div class="loader-status">INITIALIZING EXPERIENCE</div></div></div>
   <div id="reading-progress" aria-hidden="true"></div>
   <header class="wrap top">
     <a class="brand" href="#">RE:<span>ASURAJANG</span></a>
@@ -427,6 +443,26 @@
         card.style.transform = '';
       }, {passive:true});
     });
+  })();
+  </script>
+
+
+  <script>
+  (() => {
+    const loader = document.getElementById('page-loader');
+    if (!loader) return;
+    let finished = false;
+    const finish = () => {
+      if (finished) return;
+      finished = true;
+      loader.classList.add('is-done');
+      document.body.classList.remove('is-loading');
+      window.setTimeout(() => loader.remove(), 650);
+    };
+    if (document.readyState === 'complete') finish();
+    else window.addEventListener('load', finish, {once:true});
+    // Never leave the page covered if a third-party resource stalls.
+    window.setTimeout(finish, 2200);
   })();
   </script>
 
