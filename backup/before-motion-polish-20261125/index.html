@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080b12">
+  <meta name="description" content="Re:Asurajang is an independent, unofficial community project exploring ways to bring the ASURAJANG experience back.">
+  <title>Re:Asurajang — Unofficial Revival Project</title>
+  <style>
+    :root{color-scheme:dark;--bg:#080b12;--panel:#101722;--line:#243044;--muted:#91a0b6;--text:#edf3ff;--cyan:#6ce7f2;--blue:#668dff;--green:#72e0ae}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,"Noto Sans JP",system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.7}
+    a{color:inherit;text-decoration:none}.wrap{width:min(1120px,calc(100% - 40px));margin:auto}
+    .top{height:76px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #ffffff12}
+    .brand{font-weight:850;letter-spacing:.08em;font-size:18px}.brand span{color:var(--cyan)}
+    nav{display:flex;gap:28px;color:#b5c1d2;font-size:13px}nav a:hover{color:var(--cyan)}
+    .hero{min-height:650px;display:grid;align-items:center;position:relative;overflow:hidden;border-bottom:1px solid #ffffff12}
+    .hero:before{content:"";position:absolute;width:720px;height:720px;right:-140px;top:-70px;background:radial-gradient(circle,#1b5e7c55 0, #254b8a20 35%,transparent 68%);pointer-events:none}
+    .hero:after{content:"";position:absolute;inset:0;background-image:linear-gradient(#ffffff08 1px,transparent 1px),linear-gradient(90deg,#ffffff08 1px,transparent 1px);background-size:56px 56px;mask-image:linear-gradient(to bottom,transparent,#000 30%,#000 75%,transparent);pointer-events:none}
+    .hero-inner{position:relative;z-index:1;padding:90px 0}
+    .eyebrow{display:inline-flex;align-items:center;gap:10px;color:var(--cyan);font-size:11px;font-weight:800;letter-spacing:.22em;text-transform:uppercase}
+    .dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 14px var(--green)}
+    h1{font-size:clamp(48px,8vw,92px);line-height:.98;letter-spacing:-.065em;margin:26px 0 22px;font-weight:900}
+    h1 .accent{background:linear-gradient(100deg,var(--cyan),#8da7ff 70%);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .lead{font-size:clamp(16px,2vw,19px);color:#b5c1d2;max-width:620px;margin:0 0 34px}
+    .actions{display:flex;gap:12px;flex-wrap:wrap}.btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 20px;border-radius:5px;font-weight:750;font-size:13px;letter-spacing:.03em;border:1px solid var(--line);transition:.2s}
+    .btn.primary{background:linear-gradient(110deg,#4acbd8,#668dff);border:0;color:#071019}.btn:hover{transform:translateY(-2px);filter:brightness(1.12)}
+    .hero-note{margin-top:48px;color:#68788e;font-size:11px;letter-spacing:.12em}
+    section{padding:94px 0}.section-kicker{font-size:11px;letter-spacing:.2em;color:var(--cyan);font-weight:800;text-transform:uppercase}
+    h2{font-size:clamp(28px,4vw,42px);letter-spacing:-.04em;margin:10px 0 12px;line-height:1.2}.sub{color:var(--muted);max-width:680px;margin:0}
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:-1px}
+    .stat{background:linear-gradient(145deg,#111b29,#0c121d);border:1px solid var(--line);padding:25px}
+    .stat strong{display:block;font-size:30px;letter-spacing:-.04em}.stat span{color:var(--muted);font-size:12px}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:36px}
+    .panel{background:var(--panel);border:1px solid var(--line);padding:28px;border-radius:7px}
+    .panel h3{margin:0 0 20px;font-size:17px;display:flex;align-items:center;gap:10px}
+    .tag{font-size:10px;padding:4px 8px;border-radius:3px;background:#163b36;color:var(--green);letter-spacing:.1em}
+    ul.checks{list-style:none;padding:0;margin:0;display:grid;gap:13px}
+    .checks li{display:flex;gap:11px;align-items:flex-start;color:#c6d1df;font-size:14px}
+    .check{color:var(--green);font-weight:900}.pending{color:#f2c66d;font-weight:900}
+    .roadmap{margin-top:36px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+    .road{border:1px solid var(--line);background:#0e1520;padding:19px;border-radius:5px;min-height:106px}
+    .road small{color:#72839a;font-size:10px;letter-spacing:.12em}.road p{margin:8px 0 0;font-weight:650;font-size:14px}
+    .about{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+    .about-mark{min-height:280px;border:1px solid var(--line);background:radial-gradient(ellipse at 50% 45%,#1b627744,transparent 60%),linear-gradient(145deg,#101b2b,#0b1019);display:grid;place-items:center;border-radius:7px;position:relative;overflow:hidden}
+    .about-mark:before{content:"";position:absolute;inset:18px;border:1px solid #6ce7f222}
+    .symbol{font-size:clamp(54px,8vw,90px);font-weight:950;letter-spacing:-.1em;color:#d8f8ff;text-shadow:0 0 35px #56d9ed66}
+    .disclaimer{border-top:1px solid var(--line);padding:26px 0;color:#738198;font-size:11px}
+    footer{border-top:1px solid #ffffff12;padding:28px 0;color:#718097;font-size:11px}
+    .foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+    @media(max-width:720px){nav{gap:13px;font-size:11px}.top{height:64px}.hero{min-height:570px}.hero-inner{padding:70px 0}.stats{grid-template-columns:1fr}.grid,.about{grid-template-columns:1fr}.roadmap{grid-template-columns:repeat(2,1fr)}section{padding:70px 0}.about-mark{min-height:220px}}
+    @media(max-width:420px){nav a:nth-child(2){display:none}.wrap{width:min(100% - 30px,1120px)}.roadmap{grid-template-columns:1fr 1fr}}
+  
+
+    .language-switch{appearance:none;border:1px solid #6ce7f255;background:#6ce7f20b;color:var(--cyan);font:inherit;font-size:11px;font-weight:800;letter-spacing:.08em;padding:7px 11px;border-radius:3px;cursor:pointer;transition:background .2s,border-color .2s}
+    .language-switch:hover{background:#6ce7f21b;border-color:var(--cyan)}
+    [data-i18n]{transition:opacity .15s ease}
+    @media(max-width:720px){nav{gap:10px}.language-switch{padding:6px 8px}}
+    /* Re:Asurajang — refined original visual direction */
+    html{scroll-padding-top:88px}
+    body{overflow-x:hidden;background-image:radial-gradient(700px circle at var(--mx,50%) var(--my,10%),#6ce7f20b,transparent 55%)}
+    .top{position:sticky;top:0;z-index:30;background:#080b12e8;backdrop-filter:blur(16px);padding-inline:0}
+    #reading-progress{position:fixed;z-index:40;top:0;left:0;width:0;height:3px;background:linear-gradient(90deg,var(--cyan),var(--blue));box-shadow:0 0 16px #6ce7f288}
+    .hero:after{opacity:.65;transition:transform .5s ease}
+    .hero:before{animation:halo-drift 18s ease-in-out infinite alternate}
+    @keyframes halo-drift{from{transform:translate3d(0,0,0) scale(.96)}to{transform:translate3d(-28px,18px,0) scale(1.06)}}
+    .hero-inner{padding-top:112px;padding-bottom:112px}
+    .hero h1{max-width:900px;text-wrap:balance}
+    .hero .lead{line-height:1.95}
+    .hero .eyebrow{padding:7px 11px;border:1px solid #6ce7f233;background:#6ce7f20a;border-radius:2px}
+    .dot{animation:dot-pulse 2s ease-in-out infinite}
+    @keyframes dot-pulse{50%{box-shadow:0 0 0 7px #72e0ae12,0 0 22px var(--green)}}
+    .btn{position:relative;overflow:hidden;border-radius:3px}
+    .btn:after{content:"";position:absolute;inset:0;transform:translateX(-120%);background:linear-gradient(100deg,transparent,#ffffff35,transparent);transition:transform .55s}
+    .btn:hover:after{transform:translateX(120%)}
+    .stats{position:relative;z-index:2}
+    .stat{transition:transform .25s,border-color .25s,box-shadow .25s}
+    .stat:hover{transform:translateY(-5px);border-color:#6ce7f277;box-shadow:0 16px 38px #0006}
+    .panel,.road,.about-mark{transition:transform .25s,border-color .25s,box-shadow .25s}
+    .panel:hover,.road:hover{transform:translateY(-4px);border-color:#6ce7f277;box-shadow:0 16px 38px #0005}
+    .about-mark:hover{border-color:#6ce7f277;box-shadow:0 0 45px #6ce7f211}
+    .about-mark:after{content:"UNOFFICIAL / COMMUNITY PROJECT";position:absolute;bottom:24px;left:0;right:0;text-align:center;font-size:9px;letter-spacing:.24em;color:#91a0b688}
+    nav a{position:relative;transition:color .2s}
+    nav a:after{content:"";position:absolute;left:0;right:100%;bottom:-9px;height:1px;background:var(--cyan);transition:right .2s}
+    nav a:hover:after,nav a.active:after{right:0}
+    .section-kicker{display:flex;align-items:center;gap:10px}
+    .section-kicker:before{content:"";width:22px;height:1px;background:currentColor}
+    .tag{border:1px solid #72e0ae44}
+    .road{position:relative;overflow:hidden}
+    .road:after{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(var(--cyan),transparent);opacity:.6}
+    .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+    .reveal.is-visible{opacity:1;transform:translateY(0)}
+    footer a:hover{color:var(--cyan)}
+    @media(max-width:720px){.top{padding-inline:0}.hero-inner{padding-top:84px;padding-bottom:84px}.hero:before{right:-340px}.hero:after{opacity:.35}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}\n    .discord-copy{color:var(--muted);max-width:620px;margin-top:28px}.discord-copy .actions{margin-top:24px}
+
+
+    /* Responsive header and compact-screen layout */
+    .top{min-width:0}
+    nav{min-width:0}
+    @media(max-width:720px){
+      .top{height:auto;min-height:64px;display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;padding-top:12px;padding-bottom:8px}
+      .brand{font-size:16px;line-height:1.3}
+      nav{order:3;width:100%;max-width:100%;display:flex;flex-wrap:nowrap;gap:22px;overflow-x:auto;overflow-y:hidden;white-space:nowrap;padding:4px 0 9px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+      nav::-webkit-scrollbar{display:none}
+      nav a,nav button{flex:0 0 auto}
+      nav a:after{bottom:-5px}
+      .hero{min-height:0}
+      .hero-inner{padding-top:76px;padding-bottom:76px}
+      .hero h1{font-size:clamp(46px,12vw,72px)}
+      .hero .actions{display:grid;grid-template-columns:1fr;width:100%;max-width:360px}
+      .hero .btn{width:100%;min-height:46px}
+      .stats{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+      .stat{padding:14px 10px;min-width:0}
+      .stat strong{font-size:24px}
+      .stat span{font-size:10px;line-height:1.4;display:block}
+      .grid,.about{grid-template-columns:minmax(0,1fr);gap:14px}
+      .panel{padding:22px 18px}
+      .roadmap{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+      .road{padding:14px;min-height:100px;min-width:0}
+      .road p{font-size:13px;overflow-wrap:anywhere}
+      .section-kicker{font-size:10px;letter-spacing:.14em}
+      h2{font-size:clamp(27px,7vw,36px)}
+      .about-mark{min-height:200px}
+      .discord-copy .actions{width:100%}
+    }
+    @media(max-width:420px){
+      .wrap{width:calc(100% - 28px)}
+      .stats{grid-template-columns:repeat(3,minmax(0,1fr))}
+      .stat{padding:12px 8px}
+      .stat strong{font-size:21px}
+      .roadmap{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .hero .eyebrow{font-size:9px;letter-spacing:.16em}
+      .hero-note{font-size:9px;letter-spacing:.08em}
+      .checks li{font-size:13px}
+    }
+    @media(max-width:350px){
+      .stats{grid-template-columns:1fr}
+      nav{gap:18px}
+    }
+
+  </style>
+</head>
+<body>
+  <div id="reading-progress" aria-hidden="true"></div>
+  <header class="wrap top">
+    <a class="brand" href="#">RE:<span>ASURAJANG</span></a>
+    <nav aria-label="Main navigation"><a href="#about">ABOUT</a><a href="#status">STATUS</a><a href="#roadmap">ROADMAP</a><a href="#community">DISCORD</a><a href="https://github.com/hiroQ-Q/Re-Asurajang" target="_blank" rel="noopener">GITHUB ↗</a><button class="language-switch" id="language-switch" type="button" aria-label="Switch language">日本語</button></nav>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="wrap hero-inner">
+        <div class="eyebrow"><i class="dot"></i> UNOFFICIAL REVIVAL PROJECT</div>
+        <h1>THE GAME<br><span class="accent">LIVES ON.</span></h1>
+        <p class="lead" data-i18n="heroLead">ASURAJANG was an online game that has since shut down.<br>Re:Asurajang is working to make that world accessible again.</p>
+        <div class="actions">
+          <a class="btn primary" href="#status" data-i18n="viewStatus">VIEW DEVELOPMENT STATUS ↓</a>
+          <a class="btn" href="https://github.com/hiroQ-Q/Re-Asurajang" target="_blank" rel="noopener">GITHUB REPOSITORY ↗</a>
+        </div>
+        <p class="hero-note">PRESERVATION / RECONSTRUCTION / COMMUNITY</p>
+      </div>
+    </section>
+    <div class="wrap stats" aria-label="Project overview">
+      <div class="stat"><strong>08</strong><span data-i18n="verified">Verified features</span></div>
+      <div class="stat"><strong>08</strong><span data-i18n="planned">Planned features</span></div>
+      <div class="stat"><strong>WIP</strong><span>PROJECT STATUS · IN DEVELOPMENT</span></div>
+    </div>
+    <section id="about">
+      <div class="wrap about">
+        <div>
+          <div class="section-kicker">01 / ABOUT THE PROJECT</div>
+          <h2 data-i18n="aboutTitle">Bringing the ASURAJANG experience back.</h2>
+          <p class="sub" data-i18n="aboutText">Re:Asurajang is an independent, unofficial project aiming to make the ASURAJANG experience playable again. Development and testing are progressing step by step, starting with launching the client and connecting to a local server.</p>
+        </div>
+        <div class="about-mark" aria-label="Re:Asurajang project mark"><div class="symbol">RE:</div></div>
+      </div>
+    </section>
+    <section id="status" style="background:#0b1019;border-top:1px solid #ffffff0c;border-bottom:1px solid #ffffff0c">
+      <div class="wrap">
+        <div class="section-kicker">02 / DEVELOPMENT STATUS</div>
+        <h2 data-i18n="statusTitle">Development Status</h2>
+        <p class="sub" data-i18n="statusText">A clear overview of features verified to work and those planned for future development.</p>
+        <div class="grid">
+          <article class="panel">
+            <h3><span class="tag">CONFIRMED</span> <span data-i18n="confirmedTitle">Verified</span></h3>
+            <ul class="checks">
+              <li><span class="check">✓</span> Launch without Steam</li>
+              <li><span class="check">✓</span> Connect to a local server</li>
+              <li><span class="check">✓</span> Language selection</li>
+              <li><span class="check">✓</span> Tutorial character selection</li>
+              <li><span class="check">✓</span> チュートリアル</li>
+              <li><span class="check">✓</span> Tutorial match (BOT battle)</li>
+              <li><span class="check">✓</span> Access to the lobby</li>
+              <li><span class="check">✓</span> Skip the tutorial</li>
+            </ul>
+          </article>
+          <article class="panel">
+            <h3><span class="tag" style="background:#3b3020;color:#f2c66d">PLANNED</span> <span data-i18n="plannedTitle">Planned</span></h3>
+            <ul class="checks">
+              <li><span class="pending">◷</span> Battle Pass</li>
+              <li><span class="pending">◷</span> Missions</li>
+              <li><span class="pending">◷</span> Shop</li>
+              <li><span class="pending">◷</span> Account statistics</li>
+              <li><span class="pending">◷</span> Matchmaking</li>
+              <li><span class="pending">◷</span> Matches</li>
+              <li><span class="pending">◷</span> Game modes</li>
+              <li><span class="pending">◷</span> Multiplayer</li>
+            </ul>
+          </article>
+        </div>
+        <div class="roadmap" id="roadmap">
+          <div class="road"><small>PHASE 01</small><p data-i18n="phase1">Launch &amp; connectivity</p></div>
+          <div class="road"><small>PHASE 02</small><p data-i18n="phase2">Lobby &amp; core features</p></div>
+          <div class="road"><small>PHASE 03</small><p data-i18n="phase3">Match features</p></div>
+          <div class="road"><small>PHASE 04</small><p data-i18n="phase4">Online play</p></div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div class="wrap" style="text-align:center">
+        <div class="section-kicker">03 / FOLLOW DEVELOPMENT</div>
+        <h2 data-i18n="followTitle">Follow the development</h2>
+        <p class="sub" style="margin:0 auto 28px" data-i18n="followText">Source code, documentation, and the roadmap are available on GitHub.</p>
+        <a class="btn primary" href="https://github.com/hiroQ-Q/Re-Asurajang" target="_blank" rel="noopener">VIEW ON GITHUB　↗</a>
+      </div>
+    </section>
+    <section id="community" style="background:#0b1019;border-top:1px solid #ffffff0c">
+      <div class="wrap">
+        <div class="section-kicker">04 / COMMUNITY</div>
+        <h2 data-i18n="communityTitle">Join the community</h2>
+        <div class="discord-copy">
+          <p class="sub" data-i18n="communityText">Join the Re:Asurajang Discord server for community updates, discussion, and development news.</p>
+          <div class="actions"><a class="btn primary" href="https://discord.gg/uRTkJEqDg5" target="_blank" rel="noopener">JOIN DISCORD ↗</a></div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <div class="wrap disclaimer"><span data-i18n="disclaimer">DISCLAIMER — Re:Asurajang is an independent, unofficial community project and is not affiliated with the developers, operators, or rights holders of ASURAJANG. All trademarks, copyrights, game assets, and other intellectual property remain the property of their respective owners. This project does not claim ownership of the original work. Any distribution or publication of content is subject to applicable rights and permissions.</span></div>
+  <footer><div class="wrap foot"><span>© Re:Asurajang Project</span><span>UNOFFICIAL ASURAJANG REVIVAL PROJECT</span></div></footer>
+
+
+  <script>
+  (() => {
+    const translations = {
+      en: {
+        heroLead: 'ASURAJANG was an online game that has since shut down.<br>Re:Asurajang is working to make that world accessible again.',
+        viewStatus:'VIEW DEVELOPMENT STATUS ↓', verified:'Verified features', planned:'Planned features',
+        aboutTitle:'Bringing the ASURAJANG experience back.',
+        aboutText:'Re:Asurajang is an independent, unofficial project aiming to make the ASURAJANG experience playable again. Development and testing are progressing step by step, starting with launching the client and connecting to a local server.',
+        statusTitle:'Development Status', statusText:'A clear overview of features verified to work and those planned for future development.',
+        confirmedTitle:'Verified', plannedTitle:'Planned',
+        phase1:'Launch & connectivity',phase2:'Lobby & core features',phase3:'Match features',phase4:'Online play',
+        followTitle:'Follow the development',followText:'Source code, documentation, and the roadmap are available on GitHub.',communityTitle:'Join the community',communityText:'Join the Re:Asurajang Discord server for community updates, discussion, and development news.',communityTitle:'Join the community',communityText:'Join the Re:Asurajang Discord server for community updates, discussion, and development news.',disclaimer:'DISCLAIMER — Re:Asurajang is an independent, unofficial community project and is not affiliated with the developers, operators, or rights holders of ASURAJANG. All trademarks, copyrights, game assets, and other intellectual property remain the property of their respective owners. This project does not claim ownership of the original work. Any distribution or publication of content is subject to applicable rights and permissions.'
+      },
+      ja: {
+        heroLead:'サービス終了したオンラインゲーム「ASURAJANG」。<br>もう一度その世界へアクセスできることを目指して、Re:Asurajang は開発を続けています。',
+        viewStatus:'開発状況を見る ↓',verified:'動作確認済み項目',planned:'今後の開発予定項目',
+        aboutTitle:'ASURAJANGを、もう一度遊べる場所へ。',
+        aboutText:'Re:Asurajang は、ASURAJANG のゲーム体験を再び楽しめる状態にすることを目指す、非公式の独立プロジェクトです。ゲームの起動やローカルサーバーへの接続など、基礎部分から段階的に開発・検証を進めています。',
+        statusTitle:'現在の開発状況',statusText:'実際に動作確認できた項目と、今後実装を予定している項目を掲載しています。',
+        confirmedTitle:'動作確認済み',plannedTitle:'今後の開発予定',
+        phase1:'起動・接続基盤',phase2:'ロビー・基本機能',phase3:'マッチ機能',phase4:'オンラインプレイ',
+        followTitle:'開発の進捗をチェック',followText:'ソースコード、ドキュメント、ロードマップはGitHubで公開しています。',communityTitle:'コミュニティに参加',communityText:'Re:AsurajangのDiscordサーバーで、最新情報や開発状況の共有、コミュニティでの交流に参加できます。',communityTitle:'コミュニティに参加',communityText:'Re:AsurajangのDiscordサーバーで、最新情報や開発状況の共有、コミュニティでの交流に参加できます。',disclaimer:'免責事項 — Re:Asurajangは非公式の独立プロジェクトであり、ASURAJANGの開発元・運営元・権利者とは一切関係ありません。商標、著作権、ゲーム素材その他の知的財産権は各権利者に帰属します。本プロジェクトは原作の権利を主張するものではありません。コンテンツの配布・公開は、適用される権利および許諾に従います。'
+      }
+    };
+    const fixedItems = [
+      ['Launch without Steam','Steamを経由しない起動'],
+      ['Connect to a local server','ローカルサーバーへの接続'],
+      ['Language selection','言語選択'],
+      ['Tutorial character selection','チュートリアルキャラクター選択'],
+      ['Tutorial','チュートリアル'],
+      ['Tutorial','チュートリアル'],['Tutorial match (BOT battle)','チュートリアルマッチ（BOT戦）'],
+      ['Access to the lobby','ロビーへのアクセス'],
+      ['Skip the tutorial','チュートリアルスキップ'],
+      ['Battle Pass','バトルパス'],['Missions','ミッション'],['Shop','ショップ'],
+      ['Account statistics','アカウント統計'],['Matchmaking','マッチメイキング'],
+      ['Matches','マッチ'],['Game modes','モード対応'],['Multiplayer','マルチプレイ']
+    ];
+    const switcher = document.getElementById('language-switch');
+    let language = 'en';
+    function applyLanguage(next) {
+      language = next;
+      document.documentElement.lang = next;
+      document.querySelector('meta[name="description"]').content = next === 'en'
+        ? 'Re:Asurajang is an independent, unofficial community project exploring ways to bring the ASURAJANG experience back.'
+        : 'Re:AsurajangはASURAJANGのゲーム体験を再び楽しめる状態にすることを目指す非公式の独立プロジェクトです。';
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const value = translations[next][el.dataset.i18n];
+        if (value) el.innerHTML = value;
+      });
+      const rows = document.querySelectorAll('.checks li');
+      rows.forEach((row, i) => {
+        const pair = fixedItems[i];
+        if (pair) row.lastChild.textContent = next === 'en' ? pair[0] : pair[1];
+      });
+      switcher.textContent = next === 'en' ? '日本語' : 'ENGLISH';
+      switcher.setAttribute('aria-label', next === 'en' ? 'Switch to Japanese' : 'Switch to English');
+      try { localStorage.setItem('re-asurajang-language', next); } catch (_) {}
+    }
+    switcher.addEventListener('click', () => applyLanguage(language === 'en' ? 'ja' : 'en'));
+    let saved = 'en';
+    try { saved = localStorage.getItem('re-asurajang-language') || 'en'; } catch (_) {}
+    applyLanguage(saved === 'ja' ? 'ja' : 'en');
+  })();
+  </script>
+
+  <script>
+  (() => {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const bar = document.getElementById('reading-progress');
+    const update = () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      if (bar) bar.style.width = (max > 0 ? window.scrollY / max * 100 : 0) + '%';
+    };
+    window.addEventListener('scroll', update, {passive:true});
+    window.addEventListener('resize', update, {passive:true});
+    update();
+
+    if (!reduce && 'IntersectionObserver' in window) {
+      const items = document.querySelectorAll('section, .stat, .panel, .road, .about-mark');
+      items.forEach(el => el.classList.add('reveal'));
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {threshold:.12, rootMargin:'0px 0px -28px 0px'});
+      items.forEach(el => observer.observe(el));
+    }
+
+    const navLinks = [...document.querySelectorAll('nav a[href^="#"]')];
+    const targets = navLinks.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+    if ('IntersectionObserver' in window) {
+      const navObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          navLinks.forEach(a => a.classList.toggle('active', a.hash === '#' + entry.target.id));
+        });
+      }, {rootMargin:'-25% 0px -65% 0px'});
+      targets.forEach(target => navObserver.observe(target));
+    }
+
+    if (!reduce && window.matchMedia('(pointer:fine)').matches) {
+      window.addEventListener('pointermove', e => {
+        document.documentElement.style.setProperty('--mx', e.clientX + 'px');
+        document.documentElement.style.setProperty('--my', e.clientY + 'px');
+      }, {passive:true});
+    }
+  })();
+  </script>
+
+</body>
+</html>
