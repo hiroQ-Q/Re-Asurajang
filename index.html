@@ -201,13 +201,22 @@
     .loader-fill{height:100%;width:38%;background:linear-gradient(90deg,var(--cyan),var(--blue));box-shadow:0 0 14px #6ce7f2;animation:loader-sweep 1.25s ease-in-out infinite}
     @keyframes loader-sweep{0%{transform:translateX(-110%)}100%{transform:translateX(280%)}}
     .loader-status{margin-top:10px;color:#53647b;font-size:9px;letter-spacing:.12em}
+    /* Detail polish: scroll control, tactile light and clearer focus */
+    .panel:after,.road:after,.stat:after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;background:radial-gradient(260px circle at var(--shine-x,50%) var(--shine-y,50%),#6ce7f214,transparent 68%);opacity:0;transition:opacity .25s}
+    .panel:hover:after,.road:hover:after,.stat:hover:after{opacity:1}
+    .back-to-top{position:fixed;right:24px;bottom:24px;z-index:60;width:44px;height:44px;display:grid;place-items:center;border:1px solid #6ce7f255;border-radius:3px;background:#0d1724ef;color:var(--cyan);font-size:19px;opacity:0;visibility:hidden;transform:translateY(10px);transition:opacity .25s,visibility .25s,transform .25s,border-color .2s,background .2s;backdrop-filter:blur(12px);cursor:pointer;box-shadow:0 8px 28px #0006}
+    .back-to-top.is-visible{opacity:1;visibility:visible;transform:translateY(0)}
+    .back-to-top:hover{background:#14283a;border-color:var(--cyan);transform:translateY(-3px)}
+    .back-to-top:focus-visible,.btn:focus-visible,nav a:focus-visible,.language-switch:focus-visible{outline:2px solid var(--cyan);outline-offset:4px}
+    @media(max-width:720px){.back-to-top{right:15px;bottom:15px;width:42px;height:42px}}
+    @media(prefers-reduced-motion:reduce){.back-to-top{transition:none}}
     @media(prefers-reduced-motion:reduce){.page-loader{transition:none}.loader-fill{animation:none;width:100%}}
 
   </style>
 </head>
 <body class="is-loading">
   <div class="page-loader" id="page-loader" role="status" aria-live="polite" aria-label="Loading Re:Asurajang"><div class="loader-inner"><div class="loader-mark">RE:<span>ASURAJANG</span></div><div class="loader-caption">UNOFFICIAL REVIVAL PROJECT</div><div class="loader-track"><div class="loader-fill"></div></div><div class="loader-status">INITIALIZING EXPERIENCE</div></div></div>
-  <div id="reading-progress" aria-hidden="true"></div>
+  <div id="reading-progress" aria-hidden="true"></div>\n  <button class="back-to-top" id="back-to-top" type="button" aria-label="Back to top" title="Back to top">↑</button>
   <header class="wrap top">
     <a class="brand" href="#">RE:<span>ASURAJANG</span></a>
     <nav aria-label="Main navigation"><a href="#about">ABOUT</a><a href="#status">STATUS</a><a href="#roadmap">ROADMAP</a><a href="#community">DISCORD</a><a href="https://github.com/hiroQ-Q/Re-Asurajang" target="_blank" rel="noopener">GITHUB ↗</a><button class="language-switch" id="language-switch" type="button" aria-label="Switch language">日本語</button></nav>
@@ -373,10 +382,13 @@
   (() => {
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const bar = document.getElementById('reading-progress');
+    const topButton = document.getElementById('back-to-top');
     const update = () => {
       const max = document.documentElement.scrollHeight - window.innerHeight;
       if (bar) bar.style.width = (max > 0 ? window.scrollY / max * 100 : 0) + '%';
+      if (topButton) topButton.classList.toggle('is-visible', window.scrollY > 520);
     };
+    if (topButton) topButton.addEventListener('click', () => window.scrollTo({top:0,behavior:reduce?'auto':'smooth'}));
     window.addEventListener('scroll', update, {passive:true});
     window.addEventListener('resize', update, {passive:true});
     update();
